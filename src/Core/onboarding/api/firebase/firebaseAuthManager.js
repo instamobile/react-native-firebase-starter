@@ -1,11 +1,13 @@
 import Geolocation from '@react-native-community/geolocation'
-import * as Facebook from 'expo-facebook'
 import * as Location from 'expo-location'
+import { EventRegister } from 'react-native-event-listeners'
+import * as Facebook from 'expo-facebook'
 import appleAuth, {
   AppleAuthRequestScope,
   AppleAuthRequestOperation,
 } from '@invertase/react-native-apple-authentication'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
+
 import { storageAPI } from '../../../media'
 import * as authAPI from './authClient'
 import { updateUser } from '../../../users'
@@ -49,10 +51,6 @@ const loginWithEmailAndPassword = (email, password) => {
       }
     })
   })
-}
-
-const onVerification = phone => {
-  authAPI.onVerificationChanged(phone)
 }
 
 const createAccountWithEmailAndPassword = (userDetails, appConfig) => {
@@ -156,6 +154,7 @@ const logout = user => {
   updateUser(user.id || user.userID, userData)
   authAPI.logout()
 }
+
 
 const loginOrSignUpWithApple = appConfig => {
   return new Promise(async (resolve, _reject) => {
@@ -283,6 +282,10 @@ const sendSMSToPhoneNumber = phoneNumber => {
   return authAPI.sendSMSToPhoneNumber(phoneNumber)
 }
 
+const onVerification = phone => {
+  authAPI.onVerificationChanged(phone)
+}
+
 const loginWithSMSCode = (smsCode, verificationID) => {
   return new Promise(function (resolve, _reject) {
     authAPI.loginWithSMSCode(smsCode, verificationID).then(response => {
@@ -374,6 +377,7 @@ const registerWithPhoneNumber = (
   })
 }
 
+
 const handleSuccessfulLogin = (user, accountCreated) => {
   // After a successful login, we fetch & store the device token for push notifications, location, online status, etc.
   // we don't wait for fetching & updating the location or push token, for performance reasons (especially on Android)
@@ -386,7 +390,7 @@ const handleSuccessfulLogin = (user, accountCreated) => {
 const fetchAndStoreExtraInfoUponLogin = async (user, accountCreated) => {
   authAPI.fetchAndStorePushTokenIfPossible(user)
 
-  getCurrentLocation(Geolocation).then(async location => {
+  getCurrentLocation().then(async location => {
     const latitude = location.coords.latitude
     const longitude = location.coords.longitude
     var locationData = {}
@@ -417,7 +421,7 @@ const fetchAndStoreExtraInfoUponLogin = async (user, accountCreated) => {
   })
 }
 
-const getCurrentLocation = geolocation => {
+const getCurrentLocation = () => {
   return new Promise(async resolve => {
     let { status } = await Location.requestForegroundPermissionsAsync()
     if (status !== 'granted') {
@@ -425,12 +429,13 @@ const getCurrentLocation = geolocation => {
       return
     }
 
-    geolocation.getCurrentPosition(
+    Geolocation.getCurrentPosition(
       location => {
         console.log(location)
         resolve(location)
       },
       error => {
+        EventRegister.emit('get_current_position_failed')
         console.log(error)
       },
     )
@@ -438,7 +443,7 @@ const getCurrentLocation = geolocation => {
     // setRegion(location.coords);
     // onLocationChange(location.coords);
 
-    // geolocation.getCurrentPosition(
+    // Geolocation.getCurrentPosition(
     //     resolve,
     //     () => resolve({ coords: { latitude: "", longitude: "" } }),
     //     { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
@@ -457,6 +462,7 @@ const authManager = {
   sendPasswordResetEmail,
   logout,
   createAccountWithEmailAndPassword,
+  deleteUser,
   loginOrSignUpWithApple,
   loginOrSignUpWithFacebook,
   sendSMSToPhoneNumber,
@@ -464,7 +470,6 @@ const authManager = {
   registerWithPhoneNumber,
   onVerification,
   loginOrSignUpWithGoogle,
-  deleteUser,
 }
 
 export default authManager

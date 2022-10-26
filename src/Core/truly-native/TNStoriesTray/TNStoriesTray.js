@@ -25,7 +25,7 @@ function TNStoriesTray(props) {
 
   const renderItem = ({ item, index }) => {
     const isSeen =
-      item.items && item.idx + 1 === item.items.length && styles.seenStyle
+      item?.items && item?.idx + 1 === item.items?.length && styles.seenStyle
 
     return (
       <TNStoryItem
@@ -33,7 +33,7 @@ function TNStoriesTray(props) {
         item={{ ...item, lastName: displayLastName ? item.lastName : ' ' }}
         index={index}
         title={true}
-        showOnlineIndicator={showOnlineIndicator && item.isOnline}
+        showOnlineIndicator={showOnlineIndicator && item?.isOnline}
         imageContainerStyle={
           storyItemContainerStyle ? storyItemContainerStyle : isSeen
         }

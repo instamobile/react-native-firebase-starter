@@ -57,9 +57,6 @@ export const localizedErrorMessage = (errorCode, localized) => {
     case ErrorCode.requiresRecentLogin:
       return localized('You may need to log out and login again')
     default:
-      return localized(
-        'An error came up while logging you in. Please try again. Error code was ' +
-          errorCode,
-      )
+      return localized('An error came up. Please try again. ' + errorCode)
   }
 }

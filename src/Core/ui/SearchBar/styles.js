@@ -9,7 +9,6 @@ const dynamicStyles = (theme, appearance) => {
       marginVertical: 4,
       flexDirection: 'row',
       height: 40,
-      width: 200,
       backgroundColor: colorSet.primaryBackground,
     },
     cancelButtonText: {

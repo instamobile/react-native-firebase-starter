@@ -19,7 +19,8 @@ const uploadFile = async (processedUri, callbackProgress) => {
           }
           finished = true
         }
-        callbackProgress && callbackProgress(snapshot)
+
+        callbackProgress?.(snapshot.bytesTransferred, snapshot.totalBytes)
       },
       error => {
         console.log('upload error:', error)

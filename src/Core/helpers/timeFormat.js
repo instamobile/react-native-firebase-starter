@@ -4,14 +4,14 @@ const date = new Date()
 date.getTime() / 1000
 
 export const timeFormat = timeStamp => {
-  if (timeStamp) {
-    if (moment(timeStamp).isValid()) {
-      return moment.unix(timeStamp).fromNow()
+  if (moment(timeStamp).isValid()) {
+    if (moment().diff(moment.unix(timeStamp), 'days') === 0) {
+      return moment.unix(timeStamp, ['hh:mm']).format('h:mm a') // 3:20 pm
+    } else if (moment().diff(moment.unix(timeStamp), 'days') < 7) {
+      return moment.unix(timeStamp).format('ddd') // Tue, Wed etc
+    } else {
+      return moment.unix(timeStamp).format('D MMM') // 20 Jan
     }
-    if (moment().diff(moment.unix(timeStamp.seconds), 'days') == 0) {
-      return moment.unix(timeStamp.seconds).format('H:mm')
-    }
-    return moment.unix(timeStamp.seconds).fromNow()
   }
   return ' '
 }

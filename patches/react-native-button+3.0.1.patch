@@ -1,0 +1,35 @@
+diff --git a/node_modules/react-native-button/Button.js b/node_modules/react-native-button/Button.js
+index b248176..8df1756 100644
+--- a/node_modules/react-native-button/Button.js
++++ b/node_modules/react-native-button/Button.js
+@@ -6,8 +6,9 @@ import {
+   Text,
+   TouchableOpacity,
+   TouchableNativeFeedback,
++  ViewStyle,
++  TextStyle,
+   View,
+-  ViewPropTypes
+ } from 'react-native';
+ 
+ import coalesceNonElementChildren from './coalesceNonElementChildren';
+@@ -18,13 +19,13 @@ export default class Button extends Component {
+   static propTypes = {
+     ...TouchableOpacity.propTypes,
+     accessibilityLabel: PropTypes.string,
+-    allowFontScaling: Text.propTypes.allowFontScaling,
+-    containerStyle: ViewPropTypes.style,
+-    disabledContainerStyle: ViewPropTypes.style,
++    allowFontScaling: Text.propTypes?.allowFontScaling,
++    containerStyle: ViewStyle,
++    disabledContainerStyle: ViewStyle,
+     disabled: PropTypes.bool,
+-    style: Text.propTypes.style,
+-    styleDisabled: Text.propTypes.style,
+-    childGroupStyle: ViewPropTypes.style,
++    style: TextStyle,
++    styleDisabled: TextStyle,
++    childGroupStyle: ViewStyle,
+     androidBackground: PropTypes.object,
+   };
+ 

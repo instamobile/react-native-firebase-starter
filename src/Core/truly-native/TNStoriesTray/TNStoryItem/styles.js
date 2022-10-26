@@ -7,6 +7,7 @@ const dynamicStyles = (theme, appearance) => {
   const colorSet = theme.colors[appearance]
   return StyleSheet.create({
     container: {
+      alignItems: 'center',
       margin: 8,
       overflow: 'hidden',
     },

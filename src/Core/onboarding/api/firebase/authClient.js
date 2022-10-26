@@ -36,59 +36,6 @@ export const sendPasswordResetEmail = email => {
   auth().sendPasswordResetEmail(email)
 }
 
-const signInWithCredential = (credential, appIdentifier) => {
-  return new Promise((resolve, _reject) => {
-    auth()
-      .signInWithCredential(credential)
-      .then(response => {
-        const isNewUser = response.additionalUserInfo.isNewUser
-        const { first_name, last_name, family_name, given_name } =
-          response.additionalUserInfo.profile
-        const { uid, email, phoneNumber, photoURL } = response.user
-        const defaultProfilePhotoURL =
-          'https://www.iosapptemplates.com/wp-content/uploads/2019/06/empty-avatar.jpg'
-
-        if (isNewUser) {
-          const timestamp = getUnixTimeStamp()
-          const userData = {
-            id: uid,
-            email: email || '',
-            firstName: first_name || given_name || '',
-            lastName: last_name || family_name || '',
-            phone: phoneNumber || '',
-            profilePictureURL: photoURL || defaultProfilePhotoURL,
-            userID: uid,
-            appIdentifier,
-            createdAt: timestamp,
-          }
-          usersRef
-            .doc(uid)
-            .set(userData)
-            .then(() => {
-              resolve({
-                user: { ...userData, id: uid, userID: uid },
-                accountCreated: true,
-              })
-            })
-        }
-        usersRef
-          .doc(uid)
-          .get()
-          .then(document => {
-            const userData = document.data()
-            resolve({
-              user: { ...userData, id: uid, userID: uid },
-              accountCreated: false,
-            })
-          })
-      })
-      .catch(_error => {
-        console.log(_error)
-        resolve({ error: ErrorCode.serverError })
-      })
-  })
-}
-
 export const checkUniqueUsername = username => {
   return new Promise(resolve => {
     if (!username) {
@@ -183,7 +130,6 @@ export const loginWithEmailAndPassword = async (email, password) => {
 
         const userData = {
           email,
-          password,
           id: uid,
         }
         usersRef
@@ -227,6 +173,61 @@ export const loginWithEmailAndPassword = async (email, password) => {
   })
 }
 
+
+const signInWithCredential = (credential, appIdentifier, socialAuthType) => {
+  return new Promise((resolve, _reject) => {
+    auth()
+      .signInWithCredential(credential)
+      .then(response => {
+        const isNewUser = response.additionalUserInfo.isNewUser
+        const { first_name, last_name, family_name, given_name } =
+          response.additionalUserInfo.profile
+        const { uid, email, phoneNumber, photoURL } = response.user
+        const defaultProfilePhotoURL =
+          'https://www.iosapptemplates.com/wp-content/uploads/2019/06/empty-avatar.jpg'
+
+        if (isNewUser) {
+          const timestamp = getUnixTimeStamp()
+          const userData = {
+            id: uid,
+            email: email || '',
+            firstName: first_name || given_name || socialAuthType || '',
+            lastName: last_name || family_name || 'User',
+            phone: phoneNumber || '',
+            profilePictureURL: photoURL || defaultProfilePhotoURL,
+            userID: uid,
+            appIdentifier,
+            createdAt: timestamp,
+            ...(socialAuthType ? { socialAuthType } : {}),
+          }
+          usersRef
+            .doc(uid)
+            .set(userData)
+            .then(() => {
+              resolve({
+                user: { ...userData, id: uid, userID: uid },
+                accountCreated: true,
+              })
+            })
+        }
+        usersRef
+          .doc(uid)
+          .get()
+          .then(document => {
+            const userData = document.data()
+            resolve({
+              user: { ...userData, id: uid, userID: uid },
+              accountCreated: false,
+            })
+          })
+      })
+      .catch(_error => {
+        console.log(_error)
+        resolve({ error: ErrorCode.serverError })
+      })
+  })
+}
+
 export const loginWithApple = (identityToken, nonce, appIdentifier) => {
   const appleCredential = auth.AppleAuthProvider.credential(
     identityToken,
@@ -234,9 +235,11 @@ export const loginWithApple = (identityToken, nonce, appIdentifier) => {
   )
 
   return new Promise((resolve, _reject) => {
-    signInWithCredential(appleCredential, appIdentifier).then(response => {
-      resolve(response)
-    })
+    signInWithCredential(appleCredential, appIdentifier, 'Apple').then(
+      response => {
+        resolve(response)
+      },
+    )
   })
 }
 
@@ -244,9 +247,11 @@ export const loginWithFacebook = (accessToken, appIdentifier) => {
   const credential = auth.FacebookAuthProvider.credential(accessToken)
 
   return new Promise((resolve, _reject) => {
-    signInWithCredential(credential, appIdentifier).then(response => {
-      resolve(response)
-    })
+    signInWithCredential(credential, appIdentifier, 'Facebook').then(
+      response => {
+        resolve(response)
+      },
+    )
   })
 }
 
@@ -254,14 +259,10 @@ export const loginWithGoogle = (idToken, appIdentifier) => {
   const credential = auth.GoogleAuthProvider.credential(idToken)
 
   return new Promise((resolve, _reject) => {
-    signInWithCredential(credential, appIdentifier).then(response => {
+    signInWithCredential(credential, appIdentifier, 'Google').then(response => {
       resolve(response)
     })
   })
-}
-
-export const logout = () => {
-  auth().signOut()
 }
 
 export const onVerificationChanged = phone => {
@@ -409,6 +410,7 @@ export const registerWithPhoneNumber = (
   })
 }
 
+
 export const updateProfilePhoto = (userID, profilePictureURL) => {
   return new Promise((resolve, _reject) => {
     usersRef
@@ -464,4 +466,8 @@ export const removeUser = userID => {
         resolve({ success: false, error })
       })
   })
+}
+
+export const logout = () => {
+  auth().signOut()
 }

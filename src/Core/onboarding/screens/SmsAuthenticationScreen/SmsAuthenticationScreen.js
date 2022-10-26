@@ -37,6 +37,14 @@ const codeInputCellCount = 6
 
 const SmsAuthenticationScreen = props => {
   const { navigation, route } = props
+  const {
+    isSigningUp,
+    isConfirmSignUpCode,
+    isConfirmResetPasswordCode,
+    email,
+    userInfo,
+  } = route.params
+
   const { localized } = useTranslations()
   const { theme, appearance } = useTheme()
   const authManager = useAuth()
@@ -47,7 +55,9 @@ const SmsAuthenticationScreen = props => {
 
   const [inputFields, setInputFields] = useState({})
   const [loading, setLoading] = useState(false)
-  const [isPhoneVisible, setIsPhoneVisible] = useState(true)
+  const [isPhoneVisible, setIsPhoneVisible] = useState(
+    !isConfirmSignUpCode && !isConfirmResetPasswordCode,
+  )
   const [phoneNumber, setPhoneNumber] = useState(false)
   const [countriesPickerData, setCountriesPickerData] = useState(null)
   const [verificationId, setVerificationId] = useState(null)
@@ -68,8 +78,6 @@ const SmsAuthenticationScreen = props => {
   })
 
   const phoneRef = useRef(null)
-
-  const { isSigningUp } = route.params
 
   useEffect(() => {
     if (codeInputValue?.trim()?.length === codeInputCellCount) {
@@ -197,7 +205,6 @@ const SmsAuthenticationScreen = props => {
       phone: phoneNumber?.trim(),
       photoFile: profilePictureFile,
     }
-    setLoading(true)
     authManager
       .registerWithPhoneNumber(
         userDetails,
@@ -225,6 +232,7 @@ const SmsAuthenticationScreen = props => {
         }
       })
   }
+
 
   const onPressSend = async () => {
     if (phoneRef.current.isValidNumber()) {
@@ -275,7 +283,10 @@ const SmsAuthenticationScreen = props => {
     setLoading(true)
     if (isSigningUp) {
       signUpWithPhoneNumber(newCode)
-    } else {
+      return
+    }
+
+    if (!isSigningUp) {
       authManager.loginWithSMSCode(newCode, verificationId).then(response => {
         if (response.error) {
           setLoading(false)
@@ -399,44 +410,72 @@ const SmsAuthenticationScreen = props => {
     return (
       <>
         <Text style={styles.title}>{localized('Create new account')}</Text>
-        <TNProfilePictureSelector
-          setProfilePictureFile={setProfilePictureFile}
-        />
-        {config.smsSignupFields.map(renderInputField)}
+        {!isConfirmSignUpCode && (
+          <TNProfilePictureSelector
+            setProfilePictureFile={setProfilePictureFile}
+          />
+        )}
+        {!isConfirmSignUpCode && config.smsSignupFields.map(renderInputField)}
         {isPhoneVisible ? renderPhoneInput() : renderCodeInput()}
-        <Text style={styles.orTextStyle}> {localized('OR')}</Text>
-        <Button
-          containerStyle={styles.signWithEmailContainer}
-          onPress={() => navigation.navigate('Signup')}>
-          {localized('Sign up with E-mail')}
-        </Button>
+        {isConfirmSignUpCode && (
+          <Text style={styles.orTextStyle}>
+            {localized('Please check your e-mail for a confirmation code.')}
+          </Text>
+        )}
+        {!isConfirmSignUpCode && (
+          <>
+            <Text style={styles.orTextStyle}> {localized('OR')}</Text>
+            <Button
+              containerStyle={styles.signWithEmailContainer}
+              onPress={() => navigation.navigate('Signup')}>
+              {localized('Sign up with E-mail')}
+            </Button>
+          </>
+        )}
       </>
     )
   }
 
   const renderAsLoginState = () => {
-    const appleButtonStyle = {
-      dark: AppleButton?.Style?.WHITE,
-      light: AppleButton?.Style?.BLACK,
-      'no-preference': AppleButton?.Style?.WHITE,
-    }
+    const appleButtonStyle = config.isAppleAuthEnabled
+      ? {
+          dark: AppleButton?.Style?.WHITE,
+          light: AppleButton?.Style?.BLACK,
+          'no-preference': AppleButton?.Style?.WHITE,
+        }
+      : {}
 
     return (
       <>
-        <Text style={styles.title}>{localized('Sign In')}</Text>
+        {isConfirmResetPasswordCode ? (
+          <Text style={styles.title}>{localized('Reset Password')}</Text>
+        ) : (
+          <Text style={styles.title}>{localized('Sign In')}</Text>
+        )}
         {isPhoneVisible ? renderPhoneInput() : renderCodeInput()}
-        <Text style={styles.orTextStyle}> {localized('OR')}</Text>
-        <Button
-          containerStyle={styles.facebookContainer}
-          style={styles.facebookText}
-          onPress={() => onFBButtonPress()}>
-          {localized('Login With Facebook')}
-        </Button>
-        <IMGoogleSignInButton
-          containerStyle={styles.googleButtonStyle}
-          onPress={onGoogleButtonPress}
-        />
-        {appleAuth.isSupported && (
+        {isConfirmResetPasswordCode && (
+          <Text style={styles.orTextStyle}>
+            {localized('Please check your e-mail for a confirmation code.')}
+          </Text>
+        )}
+        {config.isFacebookAuthEnabled && (
+          <>
+            <Text style={styles.orTextStyle}> {localized('OR')}</Text>
+            <Button
+              containerStyle={styles.facebookContainer}
+              style={styles.facebookText}
+              onPress={() => onFBButtonPress()}>
+              {localized('Login With Facebook')}
+            </Button>
+          </>
+        )}
+        {config.isGoogleAuthEnabled && (
+          <IMGoogleSignInButton
+            containerStyle={styles.googleButtonStyle}
+            onPress={onGoogleButtonPress}
+          />
+        )}
+        {config.isAppleAuthEnabled && appleAuth.isSupported && (
           <AppleButton
             cornerRadius={25}
             style={styles.appleButtonContainer}

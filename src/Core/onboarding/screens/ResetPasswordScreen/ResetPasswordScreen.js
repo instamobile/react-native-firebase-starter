@@ -10,8 +10,10 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useTheme, useTranslations } from 'dopenative'
 import Button from 'react-native-button'
+import TNActivityIndicator from '../../../truly-native/TNActivityIndicator/TNActivityIndicator'
 import dynamicStyles from './styles'
 import { useAuth } from '../../hooks/useAuth'
+import { localizedErrorMessage } from '../../api/ErrorCode'
 
 const ResetPasswordScreen = props => {
   const authManager = useAuth()
@@ -21,6 +23,7 @@ const ResetPasswordScreen = props => {
   const styles = dynamicStyles(theme, appearance)
 
   const [email, setEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSendPasswordResetEmail = () => {
     const re =
@@ -28,7 +31,21 @@ const ResetPasswordScreen = props => {
     const isValidEmail = re.test(email?.trim())
 
     if (isValidEmail) {
-      authManager.sendPasswordResetEmail(email.trim()).then(() => {
+      setIsLoading(true)
+      authManager.sendPasswordResetEmail(email.trim()).then(response => {
+        setIsLoading(false)
+
+        if (response.error) {
+          return Alert.alert(
+            '',
+            localizedErrorMessage(response.error, localized),
+            [{ text: localized('OK') }],
+            {
+              cancelable: false,
+            },
+          )
+        }
+
         Alert.alert(
           localized('Link sent successfully'),
           localized(
@@ -75,9 +92,10 @@ const ResetPasswordScreen = props => {
           containerStyle={styles.sendContainer}
           style={styles.sendText}
           onPress={() => onSendPasswordResetEmail()}>
-          {localized('Send Link')}
+          {localized('Send')}
         </Button>
       </KeyboardAwareScrollView>
+      {isLoading && <TNActivityIndicator />}
     </View>
   )
 }

@@ -1,6 +1,9 @@
+
 import {
+  createUser,
   updateUser,
   getUserByID,
   updateProfilePhoto,
 } from './api/firebase/userClient'
-export { updateUser, getUserByID, updateProfilePhoto }
+
+export { createUser, updateUser, getUserByID, updateProfilePhoto }

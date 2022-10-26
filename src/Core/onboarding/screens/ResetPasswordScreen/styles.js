@@ -9,6 +9,15 @@ const dynamicStyles = (theme, colorScheme) => {
       justifyContent: 'center',
       backgroundColor: colorSet.primaryBackground,
     },
+    backArrowStyle: {
+      resizeMode: 'contain',
+      tintColor: colorSet.primaryForeground,
+      width: 25,
+      height: 25,
+      marginTop: Platform.OS === 'ios' ? 50 : 20,
+      marginLeft: 10,
+      transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+    },
     title: {
       fontSize: 30,
       fontWeight: 'bold',

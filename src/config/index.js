@@ -10,6 +10,10 @@ export const ConfigProvider = ({ children }) => {
   const { localized } = useTranslations()
   const config = {
     isSMSAuthEnabled: true,
+    isGoogleAuthEnabled: true,
+    isAppleAuthEnabled: true,
+    isFacebookAuthEnabled: true,
+    forgotPasswordEnabled: true,
     appIdentifier: `io.instamobile.rn.${Platform.OS}`,
     facebookIdentifier: '285315185217069',
     webClientId:

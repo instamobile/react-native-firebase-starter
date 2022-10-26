@@ -117,21 +117,6 @@ const SignupScreen = props => {
       return
     }
 
-    // if (!validatePassword(password)) {
-    //   Alert.alert(
-    //     '',
-    //     localized(
-    //       'The password must contain at least one uppercase and lowercase letter',
-    //     ),
-    //     [{ text: localized('OK') }],
-    //     {
-    //       cancelable: false,
-    //     },
-    //   );
-    //   setPassword('');
-    //   return;
-    // };
-
     setLoading(true)
 
     const userDetails = {

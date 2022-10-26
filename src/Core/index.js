@@ -3,5 +3,3 @@ export { default as SearchBarAlternate } from './ui/SearchBarAlternate/SearchBar
 export { default as SearchBar } from './ui/SearchBar/SearchBar'
 export { removeFromCollection, groupBy } from './helpers/collections'
 export { timeFormat } from './helpers/timeFormat'
-export { IMFriendsScreen } from './socialgraph/friendships'
-export { IMCreateGroupScreen } from './chat'

@@ -9,7 +9,7 @@
 #import <Expo/Expo.h>
 #import <UserNotifications/UserNotifications.h>
 
-@interface AppDelegate : EXAppDelegateWrapper <RCTBridgeDelegate>
+@interface AppDelegate : EXAppDelegateWrapper <UIApplicationDelegate, RCTBridgeDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 

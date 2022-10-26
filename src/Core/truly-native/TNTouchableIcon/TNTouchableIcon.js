@@ -16,12 +16,14 @@ function TNTouchableIcon(props) {
     onPressIn,
     iconRef,
     onLayout,
+    disabled = false,
   } = props
   const { theme, appearance } = useTheme()
   const styles = dynamicStyles(theme, appearance)
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       ref={iconRef}
       onLayout={onLayout}
       style={[styles.headerButtonContainer, containerStyle]}

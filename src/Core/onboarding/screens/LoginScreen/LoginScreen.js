@@ -12,6 +12,7 @@ import Button from 'react-native-button'
 import appleAuth, {
   AppleButton,
 } from '@invertase/react-native-apple-authentication'
+import IMGoogleSignInButton from '../../components/IMGoogleSignInButton/IMGoogleSignInButton'
 import { useDispatch } from 'react-redux'
 import { useTheme, useTranslations } from 'dopenative'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -19,7 +20,6 @@ import TNActivityIndicator from '../../../truly-native/TNActivityIndicator'
 import dynamicStyles from './styles'
 import { setUserData } from '../../redux/auth'
 import { localizedErrorMessage } from '../../api/ErrorCode'
-import IMGoogleSignInButton from '../../components/IMGoogleSignInButton/IMGoogleSignInButton'
 import { useOnboardingConfig } from '../../hooks/useOnboardingConfig'
 import { useAuth } from '../../hooks/useAuth'
 
@@ -149,11 +149,13 @@ const LoginScreen = props => {
     })
   }
 
-  const appleButtonStyle = {
-    dark: AppleButton?.Style?.WHITE,
-    light: AppleButton?.Style?.BLACK,
-    'no-preference': AppleButton?.Style?.WHITE,
-  }
+  const appleButtonStyle = config.isAppleAuthEnabled
+    ? {
+        dark: AppleButton?.Style?.WHITE,
+        light: AppleButton?.Style?.BLACK,
+        'no-preference': AppleButton?.Style?.WHITE,
+      }
+    : {}
 
   return (
     <View style={styles.container}>
@@ -186,31 +188,39 @@ const LoginScreen = props => {
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
-        <View style={styles.forgotPasswordContainer}>
-          <Button
-            style={styles.forgotPasswordText}
-            onPress={() => onForgotPassword()}>
-            {localized('Forgot password?')}
-          </Button>
-        </View>
+        {config.forgotPasswordEnabled && (
+          <View style={styles.forgotPasswordContainer}>
+            <Button
+              style={styles.forgotPasswordText}
+              onPress={() => onForgotPassword()}>
+              {localized('Forgot password?')}
+            </Button>
+          </View>
+        )}
         <Button
           containerStyle={styles.loginContainer}
           style={styles.loginText}
           onPress={() => onPressLogin()}>
           {localized('Log In')}
         </Button>
-        <Text style={styles.orTextStyle}> {localized('OR')}</Text>
-        <Button
-          containerStyle={styles.facebookContainer}
-          style={styles.facebookText}
-          onPress={() => onFBButtonPress()}>
-          {localized('Login With Facebook')}
-        </Button>
-        <IMGoogleSignInButton
-          containerStyle={styles.googleButtonStyle}
-          onPress={onGoogleButtonPress}
-        />
-        {appleAuth.isSupported && (
+        {config.isFacebookAuthEnabled && (
+          <>
+            <Text style={styles.orTextStyle}> {localized('OR')}</Text>
+            <Button
+              containerStyle={styles.facebookContainer}
+              style={styles.facebookText}
+              onPress={() => onFBButtonPress()}>
+              {localized('Login With Facebook')}
+            </Button>
+          </>
+        )}
+        {config.isGoogleAuthEnabled && (
+          <IMGoogleSignInButton
+            containerStyle={styles.googleButtonStyle}
+            onPress={onGoogleButtonPress}
+          />
+        )}
+        {config.isAppleAuthEnabled && appleAuth.isSupported && (
           <AppleButton
             cornerRadius={25}
             style={styles.appleButtonContainer}

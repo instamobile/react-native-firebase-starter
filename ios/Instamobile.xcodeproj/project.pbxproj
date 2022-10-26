@@ -7,32 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		0361C1CA36784741A65712FC /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8117B7BF09F8421C9910D4D8 /* Oswald-ExtraLight.ttf */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		171D270A276E6AC2009996E7 /* SwiftHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171D2709276E6AC2009996E7 /* SwiftHeader.swift */; };
 		171D270C276E6B2D009996E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 171D270B276E6B2D009996E7 /* GoogleService-Info.plist */; };
+		27E141583D92485881359600 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		37DD8E59FD0A79CD4828F499 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555C103EFBD2D64B7C1B2B1 /* ExpoModulesProvider.swift */; };
+		3C9FC3D53342409AA1701E0B /* FallingSky.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C8F4A04F44644B59F0A4A /* FallingSky.otf */; };
+		462CC8C3237D4C9C97A5E7A6 /* FallingSkyCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB85B1D9C2EC4C439E958DBF /* FallingSkyCond.otf */; };
+		4B226E1EC59C4F2AB1B73741 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		6761D3BE27A2A6C40080B7FC /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6761D3BD27A2A6C30080B7FC /* Oswald-Bold.ttf */; };
+		6761D3C027A2A6F90080B7FC /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6761D3BF27A2A6F90080B7FC /* Oswald-Regular.ttf */; };
+		7086F01F4D484989A6239279 /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BC6DB39BDB14378ADB1F6B2 /* Oswald-Medium.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8A1CA211932448ED8E230115 /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D1F16BF3D6E4D69877A04DC /* Oswald-SemiBold.ttf */; };
 		9B6BE46569240D1B586FBECC /* libPods-Instamobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DB5E2CEC3DEE8ED9EFC456 /* libPods-Instamobile.a */; };
+		B4818F04837E4A0B9B6890CE /* FallingSkyBd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 70F0D84F5CB24AF99E9D9319 /* FallingSkyBd.otf */; };
+		C9F14267D5B047DBB34B8ED6 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCDB49421367432583505890 /* Oswald-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0555C103EFBD2D64B7C1B2B1 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Instamobile/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		0A2C8F4A04F44644B59F0A4A /* FallingSky.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FallingSky.otf; path = ../src/assets/fonts/FallingSky.otf; sourceTree = "<group>"; };
+		0D1F16BF3D6E4D69877A04DC /* Oswald-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-SemiBold.ttf"; path = "../src/assets/fonts/Oswald-SemiBold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Instamobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instamobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Instamobile/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Instamobile/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.mm; path = Instamobile/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Instamobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Instamobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Instamobile/main.m; sourceTree = "<group>"; };
 		171D2709276E6AC2009996E7 /* SwiftHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftHeader.swift; path = Instamobile/SwiftHeader.swift; sourceTree = "<group>"; };
 		171D270B276E6B2D009996E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Instamobile/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		171D270D276EE35E009996E7 /* Instamobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Instamobile.entitlements; path = Instamobile/Instamobile.entitlements; sourceTree = "<group>"; };
+		2BC6DB39BDB14378ADB1F6B2 /* Oswald-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-Medium.ttf"; path = "../src/assets/fonts/Oswald-Medium.ttf"; sourceTree = "<group>"; };
+		6761D3BD27A2A6C30080B7FC /* Oswald-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Oswald-Bold.ttf"; path = "../src/assets/fonts/Oswald-Bold.ttf"; sourceTree = "<group>"; };
+		6761D3BF27A2A6F90080B7FC /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Oswald-Regular.ttf"; path = "../src/assets/fonts/Oswald-Regular.ttf"; sourceTree = "<group>"; };
 		6A5D5FAC1EC14A5064D597DC /* Pods-Instamobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instamobile.debug.xcconfig"; path = "Target Support Files/Pods-Instamobile/Pods-Instamobile.debug.xcconfig"; sourceTree = "<group>"; };
+		70F0D84F5CB24AF99E9D9319 /* FallingSkyBd.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FallingSkyBd.otf; path = ../src/assets/fonts/FallingSkyBd.otf; sourceTree = "<group>"; };
 		7963A337BFD88CD7EC52A938 /* Pods-Instamobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instamobile.release.xcconfig"; path = "Target Support Files/Pods-Instamobile/Pods-Instamobile.release.xcconfig"; sourceTree = "<group>"; };
+		7F37DBF458374A33B5EF1195 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		8117B7BF09F8421C9910D4D8 /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-ExtraLight.ttf"; path = "../src/assets/fonts/Oswald-ExtraLight.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Instamobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92DB5E2CEC3DEE8ED9EFC456 /* libPods-Instamobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instamobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCDB49421367432583505890 /* Oswald-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-Light.ttf"; path = "../src/assets/fonts/Oswald-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FB85B1D9C2EC4C439E958DBF /* FallingSkyCond.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FallingSkyCond.otf; path = ../src/assets/fonts/FallingSkyCond.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +77,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		1100B42F7A5D451488EA8720 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8117B7BF09F8421C9910D4D8 /* Oswald-ExtraLight.ttf */,
+				BCDB49421367432583505890 /* Oswald-Light.ttf */,
+				2BC6DB39BDB14378ADB1F6B2 /* Oswald-Medium.ttf */,
+				0D1F16BF3D6E4D69877A04DC /* Oswald-SemiBold.ttf */,
+				7F37DBF458374A33B5EF1195 /* FontAwesome5_Brands.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* Instamobile */ = {
 			isa = PBXGroup;
 			children = (
 				171D270D276EE35E009996E7 /* Instamobile.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				171D270B276E6B2D009996E7 /* GoogleService-Info.plist */,
@@ -89,6 +122,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6761D3BC27A2A5F90080B7FC /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				0A2C8F4A04F44644B59F0A4A /* FallingSky.otf */,
+				70F0D84F5CB24AF99E9D9319 /* FallingSkyBd.otf */,
+				FB85B1D9C2EC4C439E958DBF /* FallingSkyCond.otf */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,12 +142,16 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				6761D3BF27A2A6F90080B7FC /* Oswald-Regular.ttf */,
+				6761D3BD27A2A6C30080B7FC /* Oswald-Bold.ttf */,
 				13B07FAE1A68108700A75B9A /* Instamobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				052BCCE14A45A2824C0BA500 /* Pods */,
 				DEE2D651B857C7E02E04E6F7 /* ExpoModulesProviders */,
+				1100B42F7A5D451488EA8720 /* Resources */,
+				6761D3BC27A2A5F90080B7FC /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -140,6 +187,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				A7EC8217BC3112469A731D05 /* [CP] Embed Pods Frameworks */,
 				1E1BE09EE9DBF1C4999D4D90 /* [CP] Copy Pods Resources */,
 				2B1895964621437A1236E26D /* [CP-User] [RNFB] Core Configuration */,
 			);
@@ -191,6 +239,17 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				171D270C276E6B2D009996E7 /* GoogleService-Info.plist in Resources */,
+				27E141583D92485881359600 /* BuildFile in Resources */,
+				6761D3BE27A2A6C40080B7FC /* Oswald-Bold.ttf in Resources */,
+				0361C1CA36784741A65712FC /* Oswald-ExtraLight.ttf in Resources */,
+				C9F14267D5B047DBB34B8ED6 /* Oswald-Light.ttf in Resources */,
+				7086F01F4D484989A6239279 /* Oswald-Medium.ttf in Resources */,
+				6761D3C027A2A6F90080B7FC /* Oswald-Regular.ttf in Resources */,
+				4B226E1EC59C4F2AB1B73741 /* BuildFile in Resources */,
+				8A1CA211932448ED8E230115 /* Oswald-SemiBold.ttf in Resources */,
+				3C9FC3D53342409AA1701E0B /* FallingSky.otf in Resources */,
+				B4818F04837E4A0B9B6890CE /* FallingSkyBd.otf in Resources */,
+				462CC8C3237D4C9C97A5E7A6 /* FallingSkyCond.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +322,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A7EC8217BC3112469A731D05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Instamobile/Pods-Instamobile-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Instamobile/Pods-Instamobile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Instamobile/Pods-Instamobile-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,7 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				171D270A276E6AC2009996E7 /* SwiftHeader.swift in Sources */,
 				37DD8E59FD0A79CD4828F499 /* ExpoModulesProvider.swift in Sources */,
@@ -307,21 +383,25 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Instamobile/Instamobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Instamobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.instamobile.rn.ios;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = io.instamobile.rn.ios.demo;
 				PRODUCT_NAME = Instamobile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -334,19 +414,23 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Instamobile/Instamobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Instamobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.instamobile.rn.ios;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = io.instamobile.rn.ios.demo;
 				PRODUCT_NAME = Instamobile;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -384,7 +468,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -408,11 +492,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/lib/swift\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -450,7 +534,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -467,10 +551,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/lib/swift\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
