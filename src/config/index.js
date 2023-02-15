@@ -17,7 +17,8 @@ export const ConfigProvider = ({ children }) => {
     appIdentifier: `io.instamobile.rn.${Platform.OS}`,
     facebookIdentifier: '285315185217069',
     webClientId:
-      '1099201876026-7p9f7c1ukg55958ck45fc0bn0luilka4.apps.googleusercontent.com',
+      /* '1099201876026-7p9f7c1ukg55958ck45fc0bn0luilka4.apps.googleusercontent.com', */
+      '1072288025489-mu483cd9ptfi4eunc10je6g68b3t3mhu.apps.googleusercontent.com',
     onboardingConfig: {
       welcomeTitle: localized('Instamobile'),
       welcomeCaption: localized(

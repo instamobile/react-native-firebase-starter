@@ -23,17 +23,17 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb285315185217069</string>
-			</array>
+			<array/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.1099201876026-7p9f7c1ukg55958ck45fc0bn0luilka4</string>
+				<string>com.googleusercontent.apps.1072288025489-mu483cd9ptfi4eunc10je6g68b3t3mhu</string>
 			</array>
 		</dict>
 	</array>
@@ -65,8 +65,6 @@
 			</dict>
 		</dict>
 	</dict>
-
-
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your camera when posting stories and photos.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -79,8 +77,6 @@
 	<string>$(PRODUCT_NAME) would like to use your photo library when posting stories and photos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like access to your photo gallery when posting or sending messages to your friends.</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>This identifier will be used to deliver personalized ads to you.</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like your approval to track your usage in order to recommend better and more personalized ads.</string>
 	<key>UIAppFonts</key>
