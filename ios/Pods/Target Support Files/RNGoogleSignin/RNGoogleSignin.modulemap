@@ -1,0 +1,6 @@
+framework module RNGoogleSignin {
+  umbrella header "RNGoogleSignin-umbrella.h"
+
+  export *
+  module * { export * }
+}

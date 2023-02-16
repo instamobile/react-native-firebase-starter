@@ -1,0 +1,6 @@
+framework module ExpoTrackingTransparency {
+  umbrella header "ExpoTrackingTransparency-umbrella.h"
+
+  export *
+  module * { export * }
+}

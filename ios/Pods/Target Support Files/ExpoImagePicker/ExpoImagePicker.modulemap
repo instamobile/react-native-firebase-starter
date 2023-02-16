@@ -1,0 +1,6 @@
+framework module ExpoImagePicker {
+  umbrella header "ExpoImagePicker-umbrella.h"
+
+  export *
+  module * { export * }
+}

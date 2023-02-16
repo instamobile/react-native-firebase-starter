@@ -1,0 +1,6 @@
+framework module react_native_splash_screen {
+  umbrella header "react-native-splash-screen-umbrella.h"
+
+  export *
+  module * { export * }
+}

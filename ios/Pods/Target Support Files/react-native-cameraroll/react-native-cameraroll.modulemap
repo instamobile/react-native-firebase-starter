@@ -1,0 +1,6 @@
+framework module react_native_cameraroll {
+  umbrella header "react-native-cameraroll-umbrella.h"
+
+  export *
+  module * { export * }
+}

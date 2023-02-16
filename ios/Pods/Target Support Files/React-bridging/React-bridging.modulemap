@@ -1,0 +1,6 @@
+framework module react_bridging {
+  umbrella header "React-bridging-umbrella.h"
+
+  export *
+  module * { export * }
+}

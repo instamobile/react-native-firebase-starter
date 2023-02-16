@@ -1,0 +1,6 @@
+framework module ReactNativeART {
+  umbrella header "ReactNativeART-umbrella.h"
+
+  export *
+  module * { export * }
+}

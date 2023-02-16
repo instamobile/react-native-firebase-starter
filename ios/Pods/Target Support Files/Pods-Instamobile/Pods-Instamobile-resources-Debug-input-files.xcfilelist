@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-Instamobile/Pods-Instamobile-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle
+${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle

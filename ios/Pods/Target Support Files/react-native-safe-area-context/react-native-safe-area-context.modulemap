@@ -1,0 +1,6 @@
+framework module react_native_safe_area_context {
+  umbrella header "react-native-safe-area-context-umbrella.h"
+
+  export *
+  module * { export * }
+}

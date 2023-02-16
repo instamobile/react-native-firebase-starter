@@ -1,0 +1,6 @@
+framework module EXFont {
+  umbrella header "EXFont-umbrella.h"
+
+  export *
+  module * { export * }
+}
