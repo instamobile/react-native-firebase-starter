@@ -25,7 +25,9 @@ export const localizedErrorMessage = (errorCode, localized) => {
         'The password is invalid or the user does not have a password',
       )
     case ErrorCode.badEmailFormat:
-      return localized('The email address is badly formatted')
+      return localized(
+        'Email address is invalid. Please use a valid e-mail address.',
+      )
     case ErrorCode.emailInUse:
       return localized(
         'The email address is already in use by another account.',
@@ -37,7 +39,9 @@ export const localizedErrorMessage = (errorCode, localized) => {
     case ErrorCode.usernameInUse:
       return localized('The username is already taken')
     case ErrorCode.invalidPassword:
-      return localized('The given password is invalid')
+      return localized(
+        'The password is invalid. Make sure it has at least 6 characters.',
+      )
     case ErrorCode.noUser:
       return localized(
         'There is no user record corresponding to this identifier. The user may have been deleted.',

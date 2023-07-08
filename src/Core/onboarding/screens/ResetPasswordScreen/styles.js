@@ -1,4 +1,4 @@
-import { I18nManager, StyleSheet } from 'react-native'
+import { I18nManager, StyleSheet, Platform } from 'react-native'
 
 const dynamicStyles = (theme, colorScheme) => {
   const colorSet = theme.colors[colorScheme]
@@ -8,15 +8,6 @@ const dynamicStyles = (theme, colorScheme) => {
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: colorSet.primaryBackground,
-    },
-    backArrowStyle: {
-      resizeMode: 'contain',
-      tintColor: colorSet.primaryForeground,
-      width: 25,
-      height: 25,
-      marginTop: Platform.OS === 'ios' ? 50 : 20,
-      marginLeft: 10,
-      transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
     },
     title: {
       fontSize: 30,
@@ -35,6 +26,7 @@ const dynamicStyles = (theme, colorScheme) => {
       padding: 10,
       marginTop: 30,
       alignSelf: 'center',
+      alignItems: 'center',
     },
     sendText: {
       color: '#ffffff',

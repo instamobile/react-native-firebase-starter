@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native'
-import { Platform } from 'react-native'
+import { Platform, StyleSheet } from 'react-native'
 
 const dynamicStyles = (theme, colorScheme) => {
   const colorSet = theme.colors[colorScheme]
@@ -44,28 +43,36 @@ const dynamicStyles = (theme, colorScheme) => {
       backgroundColor: colorSet.primaryForeground,
       borderRadius: 25,
       padding: 10,
+      paddingTop: 14,
+      paddingBottom: 14,
       marginTop: 30,
-      alignSelf: 'center',
+      alignItems: 'center',
       justifyContent: 'center',
       height: 48,
     },
     loginText: {
       color: colorSet.primaryBackground,
+      fontSize: 15,
+      fontWeight: 'normal',
     },
     signupContainer: {
       justifyContent: 'center',
+      alignItems: 'center',
       width: '70%',
       backgroundColor: colorSet.primaryBackground,
       borderRadius: 25,
       borderWidth: Platform.OS === 'ios' ? 0.5 : 1.0,
       borderColor: colorSet.primaryForeground,
       padding: 10,
+      paddingTop: 14,
+      paddingBottom: 14,
       marginTop: 20,
       alignSelf: 'center',
-      height: 45,
     },
     signupText: {
       color: colorSet.primaryForeground,
+      fontSize: 14,
+      fontWeight: 'normal',
     },
     dismissButton: {
       position: 'absolute',

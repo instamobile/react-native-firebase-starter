@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import SearchBox from 'react-native-search-bar'
-import { useTheme, useTranslations } from 'dopenative'
+import { useTheme, useTranslations } from '../../dopebase'
 import dynamicStyles from './styles'
 
 export default function SearchBar(props) {

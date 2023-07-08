@@ -1,4 +1,4 @@
-import { Dimensions, I18nManager, StyleSheet } from 'react-native'
+import { Dimensions, I18nManager, StyleSheet, Platform } from 'react-native'
 
 const width = Dimensions.get('window').width
 
@@ -30,6 +30,7 @@ const dynamicStyles = (theme, colorScheme) => {
       padding: 10,
       marginTop: 30,
       alignSelf: 'center',
+      alignItems: 'center',
     },
     sendText: {
       color: '#ffffff',
@@ -118,6 +119,7 @@ const dynamicStyles = (theme, colorScheme) => {
       borderRadius: 25,
       marginTop: 30,
       alignSelf: 'center',
+      alignItems: 'center',
       padding: 10,
     },
     googleButtonStyle: {
@@ -137,7 +139,11 @@ const dynamicStyles = (theme, colorScheme) => {
       fontSize: 14,
     },
     signWithEmailContainer: {
+      alignItems: 'center',
       marginTop: 20,
+    },
+    signWithEmailText: {
+      color: colorSet.primaryText,
     },
     tos: {
       marginTop: 40,

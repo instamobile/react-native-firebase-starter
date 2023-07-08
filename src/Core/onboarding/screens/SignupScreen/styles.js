@@ -1,4 +1,4 @@
-import { Dimensions, I18nManager, StyleSheet } from 'react-native'
+import { Dimensions, I18nManager, StyleSheet, Platform } from 'react-native'
 
 const { height } = Dimensions.get('window')
 const imageSize = height * 0.232
@@ -61,6 +61,7 @@ const dynamicStyles = (theme, colorScheme) => {
 
     signupContainer: {
       alignSelf: 'center',
+      alignItems: 'center',
       width: '65%',
       backgroundColor: colorSet.primaryForeground,
       borderRadius: 25,
@@ -114,7 +115,6 @@ const dynamicStyles = (theme, colorScheme) => {
       zIndex: 2,
     },
     orTextStyle: {
-      color: 'black',
       marginTop: 20,
       marginBottom: 10,
       alignSelf: 'center',

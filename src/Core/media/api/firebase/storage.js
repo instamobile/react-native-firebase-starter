@@ -1,90 +1,86 @@
-import storage from '@react-native-firebase/storage'
-import { ErrorCode } from '../../../onboarding/api/ErrorCode'
+import { Platform } from 'react-native'
+import { uploadMediaFunctionURL } from '../../../firebase/config'
 import { processMediaFile } from '../../mediaProcessor'
 
-const uploadFile = async (processedUri, callbackProgress) => {
-  let finished = false
-  const filename = processedUri.substring(processedUri.lastIndexOf('/') + 1)
-  const storageRef = storage().ref()
-  const fileRef = storageRef.child(filename)
-  const uploadTask = fileRef.putFile(processedUri)
-
-  return new Promise((resolve, reject) => {
-    uploadTask.on(
-      storage.TaskEvent.STATE_CHANGED,
-      snapshot => {
-        if (snapshot.state == storage.TaskState.SUCCESS) {
-          if (finished == true) {
-            return
-          }
-          finished = true
-        }
-
-        callbackProgress?.(snapshot.bytesTransferred, snapshot.totalBytes)
-      },
-      error => {
-        console.log('upload error:', error)
-        reject(error)
-      },
-      () => {
-        uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-          console.log('File available at', downloadURL)
-          resolve(downloadURL)
-        })
-      },
-    )
+const uploadFile = async file => {
+  const uri = file?.uri
+  const fallbackName = Platform.select({
+    native: uri.substring(uri?.lastIndexOf('/') + 1),
+    default: 'webdefaultbase24',
   })
-}
 
-const processAndUploadMediaFileWithProgressTracking = (
-  file,
-  callbackProgress,
-  callbackSuccess,
-  callbackError,
-) => {
-  processMediaFile(file, ({ processedUri, thumbnail }) => {
-    // Success handler with SUCCESS is called multiple times on Android. We need work around that to ensure we only call it once
-    uploadFile(processedUri, callbackProgress)
-      .then(downloadURL => {
-        if (thumbnail) {
-          uploadFile(thumbnail, callbackProgress)
-            .then(thumbnailURL => {
-              callbackSuccess(downloadURL, thumbnailURL)
-            })
-            .catch(callbackError)
-
-          return
-        }
-        callbackSuccess(downloadURL)
-      })
-      .catch(callbackError)
+  const fileData = Platform.select({
+    web: {
+      name: file?.name ?? file?.fileName ?? fallbackName,
+      fileName: file?.name ?? file?.fileName ?? fallbackName,
+      ...file,
+      uri: file?.uri,
+      type: 'image',
+    },
+    default: {
+      ...file,
+      name: file?.name ?? file?.fileName ?? fallbackName,
+    },
   })
+  const formData = new FormData()
+  formData.append('file', fileData)
+
+  const res = await fetch(uploadMediaFunctionURL, {
+    method: 'POST',
+    body: formData,
+    mode: 'no-cors',
+    headers: Platform.select({
+      web: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data;boundary="boundary"',
+      }),
+      default: new Headers({
+        'Content-Type': 'multipart/form-data',
+      }),
+    }),
+  })
+  const jsonData = await res.json()
+  return jsonData?.downloadURL
 }
 
 const processAndUploadMediaFile = file => {
   return new Promise((resolve, _reject) => {
     processMediaFile(file, ({ processedUri, thumbnail }) => {
-      uploadFile(processedUri)
+      uploadFile(file)
         .then(downloadURL => {
           if (thumbnail) {
             uploadFile(thumbnail)
               .then(thumbnailURL => {
                 resolve({ downloadURL, thumbnailURL })
               })
-              .catch(() => resolve({ error: ErrorCode.photoUploadFailed }))
+              .catch(e => resolve({ error: 'photoUploadFailed' }))
 
             return
           }
           resolve({ downloadURL })
         })
-        .catch(() => resolve({ error: ErrorCode.photoUploadFailed }))
+        .catch(e => resolve({ error: 'photoUploadFailed' }))
     })
   })
 }
 
+const uploadMedia = async mediaAsset => {
+  try {
+    const response = await processAndUploadMediaFile(mediaAsset)
+    return {
+      ...mediaAsset,
+      downloadURL: response.downloadURL,
+      thumbnailURL: response.thumbnailURL ?? response.downloadURL,
+    }
+  } catch (error) {
+    console.log('error uploading media', error)
+    return null
+  }
+}
+
 const firebaseStorage = {
   processAndUploadMediaFile,
-  processAndUploadMediaFileWithProgressTracking,
+  uploadMedia,
 }
 
 export default firebaseStorage

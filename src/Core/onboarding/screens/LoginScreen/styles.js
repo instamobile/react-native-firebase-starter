@@ -1,4 +1,4 @@
-import { I18nManager, StyleSheet } from 'react-native'
+import { I18nManager, StyleSheet, Platform } from 'react-native'
 
 const dynamicStyles = (theme, colorScheme) => {
   const colorSet = theme.colors[colorScheme]
@@ -31,6 +31,7 @@ const dynamicStyles = (theme, colorScheme) => {
       padding: 10,
       marginTop: 30,
       alignSelf: 'center',
+      alignItems: 'center',
     },
     loginText: {
       color: '#ffffff',
@@ -60,6 +61,7 @@ const dynamicStyles = (theme, colorScheme) => {
       padding: 10,
       marginTop: 30,
       alignSelf: 'center',
+      alignItems: 'center',
     },
     googleButtonStyle: {
       alignSelf: 'center',
@@ -78,7 +80,11 @@ const dynamicStyles = (theme, colorScheme) => {
       fontSize: 14,
     },
     phoneNumberContainer: {
+      alignItems: 'center',
       marginTop: 20,
+    },
+    phoneNumber: {
+      color: colorSet.primaryText,
     },
     forgotPasswordContainer: {
       width: '80%',
@@ -89,6 +95,7 @@ const dynamicStyles = (theme, colorScheme) => {
     forgotPasswordText: {
       fontSize: 14,
       padding: 4,
+      color: colorSet.primaryText,
     },
     backArrowStyle: {
       resizeMode: 'contain',

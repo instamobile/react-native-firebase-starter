@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  Alert,
   Image,
   Keyboard,
   Text,
@@ -8,21 +7,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import Button from 'react-native-button'
+import { useNavigation } from '@react-navigation/core'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useDispatch } from 'react-redux'
-import { useTheme, useTranslations } from 'dopenative'
+import {
+  useTheme,
+  useTranslations,
+  ActivityIndicator,
+  Alert,
+  ProfilePictureSelector,
+} from '../../../dopebase'
 import dynamicStyles from './styles'
-import TNActivityIndicator from '../../../truly-native/TNActivityIndicator'
-import TNProfilePictureSelector from '../../../truly-native/TNProfilePictureSelector/TNProfilePictureSelector'
 import { setUserData } from '../../redux/auth'
 import { localizedErrorMessage } from '../../api/ErrorCode'
 import TermsOfUseView from '../../components/TermsOfUseView'
 import { useOnboardingConfig } from '../../hooks/useOnboardingConfig'
 import { useAuth } from '../../hooks/useAuth'
 
-const SignupScreen = props => {
-  const { navigation } = props
+const SignupScreen = () => {
+  const navigation = useNavigation()
   const authManager = useAuth()
   const dispatch = useDispatch()
 
@@ -181,12 +184,9 @@ const SignupScreen = props => {
     return (
       <>
         {config.signupFields.map(renderInputField)}
-        <Button
-          containerStyle={styles.signupContainer}
-          style={styles.signupText}
-          onPress={() => onRegister()}>
-          {localized('Sign Up')}
-        </Button>
+        <TouchableOpacity style={styles.signupContainer} onPress={onRegister}>
+          <Text style={styles.signupText}>{localized('Sign Up')}</Text>
+        </TouchableOpacity>
       </>
     )
   }
@@ -200,18 +200,16 @@ const SignupScreen = props => {
           <Image style={styles.backArrowStyle} source={theme.icons.backArrow} />
         </TouchableOpacity>
         <Text style={styles.title}>{localized('Create new account')}</Text>
-        <TNProfilePictureSelector
-          setProfilePictureFile={setProfilePictureFile}
-        />
+        <ProfilePictureSelector setProfilePictureFile={setProfilePictureFile} />
         {renderSignupWithEmail()}
         {config.isSMSAuthEnabled && (
           <>
             <Text style={styles.orTextStyle}>{localized('OR')}</Text>
-            <Button
-              containerStyle={styles.PhoneNumberContainer}
+            <TouchableOpacity
+              style={styles.PhoneNumberContainer}
               onPress={() => navigation.navigate('Sms', { isSigningUp: true })}>
-              {localized('Sign up with phone number')}
-            </Button>
+              <Text>{localized('Sign up with phone number')}</Text>
+            </TouchableOpacity>
           </>
         )}
         <TermsOfUseView
@@ -220,7 +218,7 @@ const SignupScreen = props => {
           style={styles.tos}
         />
       </KeyboardAwareScrollView>
-      {loading && <TNActivityIndicator />}
+      {loading && <ActivityIndicator />}
     </View>
   )
 }

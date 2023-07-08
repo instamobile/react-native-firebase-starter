@@ -1,14 +1,15 @@
 import React, { useLayoutEffect } from 'react'
 import { View, Image, Text } from 'react-native'
-import PropTypes from 'prop-types'
 import AppIntroSlider from 'react-native-app-intro-slider'
-import { useTheme, useTranslations } from 'dopenative'
+import { useNavigation } from '@react-navigation/core'
+import { useTheme, useTranslations } from '../../../dopebase'
 import deviceStorage from '../../utils/AuthDeviceStorage'
 import dynamicStyles from './styles'
 import { useOnboardingConfig } from '../../hooks/useOnboardingConfig'
 
-const WalkthroughScreen = props => {
-  const { navigation } = props
+const WalkthroughScreen = () => {
+  const navigation = useNavigation()
+
   const { config } = useOnboardingConfig()
 
   const { localized } = useTranslations()

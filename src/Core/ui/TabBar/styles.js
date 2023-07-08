@@ -5,14 +5,6 @@ const dynamicStyles = (theme, appearance) => {
   const colorSet = theme.colors[appearance]
   return StyleSheet.create({
     tabBarContainer: {
-      ...ifIphoneX(
-        {
-          height: 80,
-        },
-        {
-          height: 45,
-        },
-      ),
       backgroundColor: colorSet.primaryBackground,
       flexDirection: 'row',
       borderTopWidth: 0.5,

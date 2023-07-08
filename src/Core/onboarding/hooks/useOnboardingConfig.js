@@ -15,3 +15,4 @@ export const OnboardingConfigProvider = ({ children, config }) => {
 }
 
 export const useOnboardingConfig = () => useContext(OnboardingConfigContext)
+// TODO delete this file

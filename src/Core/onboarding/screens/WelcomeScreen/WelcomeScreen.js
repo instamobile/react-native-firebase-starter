@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react'
-import Button from 'react-native-button'
 import { Image, Keyboard, Platform, Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import { useDispatch } from 'react-redux'
 import messaging from '@react-native-firebase/messaging'
-import { useTheme, useTranslations } from 'dopenative'
-import TNActivityIndicator from '../../../truly-native/TNActivityIndicator'
+import {
+  useTheme,
+  useTranslations,
+  ActivityIndicator,
+  DismissButton,
+  Button,
+} from '../../../dopebase'
 import dynamicStyles from './styles'
 import { setUserData } from '../../redux/auth'
 import { updateUser } from '../../../users'
-import { IMDismissButton } from '../../../truly-native'
 import { useOnboardingConfig } from '../../hooks/useOnboardingConfig'
+
 import { useAuth } from '../../hooks/useAuth'
 import useCurrentUser from '../../hooks/useCurrentUser'
 
 const WelcomeScreen = props => {
-  const { navigation } = props
+  const navigation = useNavigation()
   const currentUser = useCurrentUser()
 
   const dispatch = useDispatch()
@@ -65,11 +70,20 @@ const WelcomeScreen = props => {
             }),
           )
           Keyboard.dismiss()
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'MainStack', params: { user } }],
-          })
-          handleInitialNotification()
+          if (user?.role === 'admin') {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'AdminStack', params: { user } }],
+            })
+          } else {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'MainStack', params: { user } }],
+            })
+          }
+          if (Platform.OS !== 'web') {
+            handleInitialNotification()
+          }
           return
         }
         setIsLoading(false)
@@ -94,13 +108,17 @@ const WelcomeScreen = props => {
   }
 
   if (isLoading == true) {
-    return <TNActivityIndicator />
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator />
+      </View>
+    )
   }
 
   return (
     <View style={styles.container}>
       {props.delayedMode && (
-        <IMDismissButton
+        <DismissButton
           style={styles.dismissButton}
           tintColor={theme.colors[appearance].primaryForeground}
           onPress={() => navigation.goBack()}
@@ -121,8 +139,9 @@ const WelcomeScreen = props => {
         {caption ? caption : config.onboardingConfig.welcomeCaption}
       </Text>
       <Button
-        containerStyle={styles.loginContainer}
-        style={styles.loginText}
+        text={localized('Log In')}
+        style={styles.loginContainer}
+        textStyle={styles.loginText}
         onPress={() => {
           config.isSMSAuthEnabled
             ? navigation.navigate('LoginStack', {
@@ -137,9 +156,11 @@ const WelcomeScreen = props => {
         }}>
         {localized('Log In')}
       </Button>
+
       <Button
-        containerStyle={styles.signupContainer}
-        style={styles.signupText}
+        text={localized('Sign Up')}
+        style={styles.signupContainer}
+        textStyle={styles.signupText}
         onPress={() => {
           config.isSMSAuthEnabled
             ? navigation.navigate('LoginStack', {

@@ -1,11 +1,10 @@
 import React, { memo, useEffect, useLayoutEffect, useCallback } from 'react'
 import { Text, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
-import { useTheme, useTranslations } from 'dopenative'
+import { useTheme, useTranslations, TouchableIcon } from '../../core/dopebase'
 import dynamicStyles from './styles'
-import { TNTouchableIcon } from '../../Core/truly-native'
-import { useCurrentUser } from '../../Core/onboarding'
-import { useAuth } from '../../Core/onboarding/hooks/useAuth'
+import { useCurrentUser } from '../../core/onboarding'
+import { useAuth } from '../../core/onboarding/hooks/useAuth'
 
 export const HomeScreen = memo(props => {
   const { navigation } = props
@@ -23,7 +22,7 @@ export const HomeScreen = memo(props => {
       headerTitle: localized('Home'),
       headerRight: () => (
         <View>
-          <TNTouchableIcon
+          <TouchableIcon
             imageStyle={{ tintColor: colorSet.primaryForeground }}
             iconSource={theme.icons.logout}
             onPress={onLogout}

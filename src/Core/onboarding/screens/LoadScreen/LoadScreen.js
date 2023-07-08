@@ -1,19 +1,25 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useLayoutEffect } from 'react'
 import { View } from 'react-native'
-import { useFocusEffect } from '@react-navigation/core'
+import { useFocusEffect, useNavigation } from '@react-navigation/core'
 import deviceStorage from '../../utils/AuthDeviceStorage'
 import { useDispatch } from 'react-redux'
 import { setUserData } from '../../redux/auth'
 import { useOnboardingConfig } from '../../hooks/useOnboardingConfig'
 import { useAuth } from '../../hooks/useAuth'
 
-const LoadScreen = props => {
-  const { navigation } = props
+const LoadScreen = () => {
+  const navigation = useNavigation()
 
   const dispatch = useDispatch()
   const authManager = useAuth()
 
   const { config } = useOnboardingConfig()
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    })
+  }, [navigation])
 
   useFocusEffect(
     useCallback(() => {
@@ -58,10 +64,6 @@ const LoadScreen = props => {
       })
   }
   return <View />
-}
-
-LoadScreen.navigationOptions = {
-  header: null,
 }
 
 export default LoadScreen

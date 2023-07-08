@@ -1,14 +1,12 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import { useDispatch } from 'react-redux'
-import { useTheme, useTranslations } from 'dopenative'
+import { useTheme, useTranslations } from '../../../dopebase'
 import dynamicStyles from './styles'
-import { logout } from '../../../onboarding/redux/auth'
 import IMMenuButton from '../IMMenuButton/IMMenuButton'
 import { useAuth } from '../../../onboarding/hooks/useAuth'
 import { useCurrentUser } from '../../../onboarding'
 
-const IMDrawerMenu = props => {
+export const IMDrawerMenu = props => {
   const { navigation, menuItems, menuItemsSettings } = props
 
   const { localized } = useTranslations()
@@ -17,7 +15,6 @@ const IMDrawerMenu = props => {
 
   const authManager = useAuth()
   const currentUser = useCurrentUser()
-  const dispatch = useDispatch()
 
   const defaultProfilePhotoURL =
     'https://www.iosapptemplates.com/wp-content/uploads/2019/06/empty-avatar.jpg'
@@ -25,9 +22,7 @@ const IMDrawerMenu = props => {
   const actionLowerMenu = action => {
     if (action == 'logout') {
       authManager?.logout(currentUser)
-      dispatch(logout())
       navigation.navigate('LoadScreen')
-      return
     }
     return
   }
@@ -98,4 +93,3 @@ const IMDrawerMenu = props => {
     </View>
   )
 }
-export default IMDrawerMenu

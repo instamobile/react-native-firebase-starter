@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  TextInput,
-  Text,
-  Alert,
-} from 'react-native'
+import { View, TouchableOpacity, Image, TextInput, Text } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { useTheme, useTranslations } from 'dopenative'
-import Button from 'react-native-button'
-import TNActivityIndicator from '../../../truly-native/TNActivityIndicator/TNActivityIndicator'
+import {
+  useTheme,
+  useTranslations,
+  ActivityIndicator,
+  Alert,
+} from '../../../dopebase'
 import dynamicStyles from './styles'
 import { useAuth } from '../../hooks/useAuth'
 import { localizedErrorMessage } from '../../api/ErrorCode'
@@ -88,14 +84,13 @@ const ResetPasswordScreen = props => {
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
-        <Button
-          containerStyle={styles.sendContainer}
-          style={styles.sendText}
+        <TouchableOpacity
+          style={styles.sendContainer}
           onPress={() => onSendPasswordResetEmail()}>
-          {localized('Send')}
-        </Button>
+          <Text style={styles.sendText}>{localized('Send')}</Text>
+        </TouchableOpacity>
       </KeyboardAwareScrollView>
-      {isLoading && <TNActivityIndicator />}
+      {isLoading && <ActivityIndicator />}
     </View>
   )
 }

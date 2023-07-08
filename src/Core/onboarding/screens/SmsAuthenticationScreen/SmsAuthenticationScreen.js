@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {
-  Alert,
   Image,
   Keyboard,
   TextInput,
@@ -8,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import Button from 'react-native-button'
 import PhoneInput from 'react-native-phone-input'
 import {
   CodeField,
@@ -16,14 +14,19 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field'
+import { useNavigation, useRoute } from '@react-navigation/core'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { useTheme, useTranslations } from 'dopenative'
 import appleAuth, {
   AppleButton,
 } from '@invertase/react-native-apple-authentication'
-import TNActivityIndicator from '../../../truly-native/TNActivityIndicator'
-import TNProfilePictureSelector from '../../../truly-native/TNProfilePictureSelector/TNProfilePictureSelector'
-import CountriesModalPicker from '../../../truly-native/CountriesModalPicker/CountriesModalPicker'
+import {
+  useTheme,
+  useTranslations,
+  ActivityIndicator,
+  Alert,
+  ProfilePictureSelector,
+  CountriesModalPicker,
+} from '../../../dopebase'
 import { setUserData } from '../../redux/auth'
 import { useDispatch } from 'react-redux'
 import { localizedErrorMessage } from '../../api/ErrorCode'
@@ -35,8 +38,9 @@ import { useAuth } from '../../hooks/useAuth'
 
 const codeInputCellCount = 6
 
-const SmsAuthenticationScreen = props => {
-  const { navigation, route } = props
+const SmsAuthenticationScreen = () => {
+  const navigation = useNavigation()
+  const route = useRoute()
   const {
     isSigningUp,
     isConfirmSignUpCode,
@@ -348,12 +352,9 @@ const SmsAuthenticationScreen = props => {
             onCancel={onPressCancelContryModalPicker}
           />
         )}
-        <Button
-          containerStyle={styles.sendContainer}
-          style={styles.sendText}
-          onPress={() => onPressSend()}>
-          {localized('Send code')}
-        </Button>
+        <TouchableOpacity style={styles.sendContainer} onPress={onPressSend}>
+          <Text style={styles.sendText}>{localized('Send code')}</Text>
+        </TouchableOpacity>
       </>
     )
   }
@@ -411,7 +412,7 @@ const SmsAuthenticationScreen = props => {
       <>
         <Text style={styles.title}>{localized('Create new account')}</Text>
         {!isConfirmSignUpCode && (
-          <TNProfilePictureSelector
+          <ProfilePictureSelector
             setProfilePictureFile={setProfilePictureFile}
           />
         )}
@@ -425,11 +426,11 @@ const SmsAuthenticationScreen = props => {
         {!isConfirmSignUpCode && (
           <>
             <Text style={styles.orTextStyle}> {localized('OR')}</Text>
-            <Button
-              containerStyle={styles.signWithEmailContainer}
+            <TouchableOpacity
+              style={styles.signWithEmailContainer}
               onPress={() => navigation.navigate('Signup')}>
-              {localized('Sign up with E-mail')}
-            </Button>
+              <Text>{localized('Sign up with E-mail')}</Text>
+            </TouchableOpacity>
           </>
         )}
       </>
@@ -461,12 +462,13 @@ const SmsAuthenticationScreen = props => {
         {config.isFacebookAuthEnabled && (
           <>
             <Text style={styles.orTextStyle}> {localized('OR')}</Text>
-            <Button
-              containerStyle={styles.facebookContainer}
-              style={styles.facebookText}
+            <TouchableOpacity
+              style={styles.facebookContainer}
               onPress={() => onFBButtonPress()}>
-              {localized('Login With Facebook')}
-            </Button>
+              <Text style={styles.facebookText}>
+                {localized('Login With Facebook')}
+              </Text>
+            </TouchableOpacity>
           </>
         )}
         {config.isGoogleAuthEnabled && (
@@ -484,11 +486,13 @@ const SmsAuthenticationScreen = props => {
             onPress={() => onAppleButtonPress()}
           />
         )}
-        <Button
-          containerStyle={styles.signWithEmailContainer}
+        <TouchableOpacity
+          style={styles.signWithEmailContainer}
           onPress={() => navigation.navigate('Login')}>
-          {localized('Sign in with E-mail')}
-        </Button>
+          <Text style={styles.signWithEmailText}>
+            {localized('Sign in with E-mail')}
+          </Text>
+        </TouchableOpacity>
       </>
     )
   }
@@ -511,7 +515,7 @@ const SmsAuthenticationScreen = props => {
           />
         )}
       </KeyboardAwareScrollView>
-      {loading && <TNActivityIndicator />}
+      {loading && <ActivityIndicator />}
     </View>
   )
 }

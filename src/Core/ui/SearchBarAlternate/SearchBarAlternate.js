@@ -5,10 +5,9 @@ import {
   Text,
   View,
   TextInput,
-  Dimensions,
+  Button,
 } from 'react-native'
-import { useTheme } from 'dopenative'
-import { Button } from 'react-native-elements'
+import { useTheme } from '../../dopebase'
 import dynamicStyles from './styles'
 
 export default memo(function SearchBarAlternate(props) {
@@ -22,11 +21,7 @@ export default memo(function SearchBarAlternate(props) {
   if (onChangeText) {
     return (
       <View style={styles.searchBoxContainer}>
-        <View
-          style={[
-            styles.container,
-            { width: Dimensions.get('window').width - 86, borderRadius: 9 },
-          ]}>
+        <View style={[styles.container, { borderRadius: 9 }]}>
           <Image style={styles.searchIcon} source={searchIcon} />
           <TextInput
             style={styles.searchInput}

@@ -1,19 +1,35 @@
-import React from 'react'
-import { SafeAreaView } from 'react-native'
-import { useTheme } from 'dopenative'
+import React, { useMemo } from 'react'
+import { View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useTheme } from '../../dopebase'
 import dynamicStyles from './styles'
 import Tab from './Tab'
 
 export function TabBarBuilder({ tabIcons, state, navigation, descriptors }) {
+  const insets = useSafeAreaInsets()
+
   const { theme, appearance } = useTheme()
   const styles = dynamicStyles(theme, appearance)
   const focusedOptions =
     descriptors &&
     descriptors[state?.routes[state?.index]?.key]?.options?.tabBarStyle?.display
 
+  const containerStyle = useMemo(() => {
+    if (insets.bottom) {
+      return {
+        paddingBottom: insets.bottom,
+        minHeight: 80,
+      }
+    }
+    return {
+      paddingBottom: 16,
+      minHeight: 45,
+    }
+  }, [insets.bottom])
+
   if (focusedOptions === undefined) {
     return (
-      <SafeAreaView style={styles.tabBarContainer}>
+      <View style={[styles.tabBarContainer, containerStyle]}>
         {state.routes.map((route, index) => {
           return (
             <Tab
@@ -25,7 +41,7 @@ export function TabBarBuilder({ tabIcons, state, navigation, descriptors }) {
             />
           )
         })}
-      </SafeAreaView>
+      </View>
     )
   } else {
     return null

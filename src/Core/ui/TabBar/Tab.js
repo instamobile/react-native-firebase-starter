@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, Image } from 'react-native'
-import { useTheme } from 'dopenative'
+import { useTheme } from '../../dopebase'
 import dynamicStyles from './styles'
 
 function Tab({ route, onPress, focus, tabIcons }) {

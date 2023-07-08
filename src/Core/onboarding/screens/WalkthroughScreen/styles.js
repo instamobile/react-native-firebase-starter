@@ -23,10 +23,11 @@ const dynamicStyles = (theme, colorScheme) => {
       tintColor: 'white',
     },
     container: {
-      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: theme.colors[colorScheme].primaryForeground,
+      height: '100%',
+      width: '100%',
     },
     button: {
       fontSize: 18,

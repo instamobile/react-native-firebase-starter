@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, Text, TouchableHighlight, View } from 'react-native'
-import { useTheme } from 'dopenative'
+import { useTheme } from '../../../dopebase'
 import dynamicStyles from './styles'
 
 const IMMenuButton = props => {

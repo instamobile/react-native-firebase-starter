@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import <React/RCTBridgeDelegate.h>
-#import <Expo/Expo.h>
+#import <RCTAppDelegate.h>
+#import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
+#import <Expo/Expo.h>
 
-@interface AppDelegate : EXAppDelegateWrapper <UIApplicationDelegate, RCTBridgeDelegate>
-
-@property (nonatomic, strong) UIWindow *window;
+//@interface AppDelegate : EXAppDelegateWrapper
+@interface AppDelegate : RCTAppDelegate
 
 @end

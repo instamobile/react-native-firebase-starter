@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, Linking, View } from 'react-native'
-import { useTheme, useTranslations } from 'dopenative'
+import { useTheme, useTranslations } from '../../dopebase'
 
 const TermsOfUseView = props => {
   const { tosLink, privacyPolicyLink, style } = props

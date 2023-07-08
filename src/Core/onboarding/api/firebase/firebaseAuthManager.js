@@ -1,6 +1,5 @@
 import Geolocation from '@react-native-community/geolocation'
 import * as Location from 'expo-location'
-import { EventRegister } from 'react-native-event-listeners'
 import * as Facebook from 'expo-facebook'
 import appleAuth, {
   AppleAuthRequestScope,
@@ -435,7 +434,7 @@ const getCurrentLocation = () => {
         resolve(location)
       },
       error => {
-        EventRegister.emit('get_current_position_failed')
+        //        EventRegister.emit('get_current_position_failed')
         console.log(error)
       },
     )

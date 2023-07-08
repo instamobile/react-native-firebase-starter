@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { useTranslations } from 'dopenative'
 import { Platform } from 'react-native'
+import { useTranslations } from '../core/dopebase'
 
 const regexForNames = /^[a-zA-Z]{2,25}$/
 

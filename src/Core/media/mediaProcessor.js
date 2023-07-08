@@ -1,8 +1,10 @@
 import { Platform } from 'react-native'
 import * as _ from 'lodash'
 import * as FileSystem from 'expo-file-system'
-import ImageResizer from 'react-native-image-resizer'
-import uuidv4 from 'uuidv4'
+import * as VideoThumbnails from 'expo-video-thumbnails'
+import * as ImageManipulator from 'expo-image-manipulator'
+import 'react-native-get-random-values'
+import { v4 as uuid } from 'uuid'
 
 const BASE_DIR = `${FileSystem.cacheDirectory}expo-cache/`
 
@@ -34,30 +36,13 @@ export const downloadFile = async (file, fileName) => {
 }
 
 
-const resizeImage = async (
-  {
-    image,
-    newWidth = 1100,
-    newHeight = 1100,
-    compressFormat = 'JPEG',
-    quality = 100,
-  },
-  callback,
-) => {
+const resizeImage = async ({ image }, callback) => {
   const imagePath = image?.path || image?.uri
 
-  if (image?.height < newHeight) {
-    callback(imagePath)
-    return
-  }
-
-  ImageResizer.createResizedImage(
-    imagePath,
-    newWidth,
-    newHeight,
-    compressFormat,
-    quality,
-  )
+  ImageManipulator.manipulateAsync(imagePath, [], {
+    compress: 0.7,
+    format: ImageManipulator.SaveFormat.JPEG,
+  })
     .then(newSource => {
       if (newSource) {
         callback(newSource.uri)
@@ -78,11 +63,11 @@ const resizeImage = async (
  * @param {function} callback
  */
 export const processMediaFile = (file, callback) => {
-  const { mime, type, uri, path } = file
+  const { type, uri, path } = file
   const fileSource = uri || path
 
 
-  const includesImage = mime?.includes('image') || type?.includes('image')
+  const includesImage = type?.includes('image')
   if (includesImage) {
     resizeImage({ image: file }, processedUri => {
       callback({ processedUri })
